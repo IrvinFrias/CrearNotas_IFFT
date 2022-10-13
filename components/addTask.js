@@ -1,6 +1,7 @@
 
 import checkComplete from "./checkComplete.js";
 import deleteIcon from "./deleteIcon.js";
+import {readTask} from "./readTasks.js";
 
 
 export const addTask = (evento) =>{
@@ -29,13 +30,15 @@ export const addTask = (evento) =>{
         value,
         dateFormat
     };
+
     taskList.push(taskObj);
     localStorage.setItem("tasks", JSON.stringify(taskList));
 
-    //Agregar Tarea
-    const task = createTask(taskObj);
-    list.appendChild(task);
+    //Inicializar lista vacia:
+    list.innerHTML = '';
 
+    //Agregar Tarea por fecha
+    readTask();
 }
 
 
